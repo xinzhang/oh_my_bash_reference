@@ -22,14 +22,15 @@ sort -c #check sort
 ### uniq
 
 ### cut
-cut -f 1 -d \, country.csv
-cut -s -f 1,2 -d\, country.csv
-cat country.csv | rev | cut -f 1 -d \, | rev #get last column
+- cut -f 1 -d \, country.csv
+- cut -s -f 1,2 -d\, country.csv
+- cat country.csv | rev | cut -f 1 -d \, | rev # get last column
 
 ### xargs
  echo pof tut com | xargs -n 1 echo
  
 ### sed
+```
 sed \
 -e 's/Book: //' \
 -e 's/Author: //' \
@@ -37,25 +38,39 @@ sed \
 -e '1 i Books you must read' \
 -e '1 i --------------------'\
 classic_reads
+```
+```
 sed -e '10,30d' classic_reads
 sed -n '1,5p' classic_reads
 ls -al | sed -n '/^d/p' . # list directory only, p for print
-
+```
 ### awk
-FS: field separator, default \t
-OFS: output field separator
-RS: record separator, default \n
-$0: whole line, $1.. 
-NF: number of fields
-NR: current line number
-FILENAME: filename
-print(), length(), substr(), gsub(), index(), tolower(), 
-gusb - replacement 
-awk samples:
+- FS: field separator, default \t
+- OFS: output field separator
+- RS: record separator, default \n
+- $0: whole line, $1.. 
+- NF: number of fields
+- NR: current line number
+- FILENAME: filename
+- print(), length(), substr(), gsub(), index(), tolower(), 
+- gusb - replacement 
+
+### awk samples:
+```
 aws 'BEGIN{FS=",";OFS="\T"} {print $1 $3}' ...
+```
+```
 ls -l | awk 'BEGIN {SUM=0} {SUM += $5} END{print SUM}'
+```
+```
 echo "This is my test" \
   | awk '{ if (length($0) > 10) print "string is too long"; else print length($0) }'
+```
+```
 awk 'BEGIN{IGNORECASE=1;FS=",";OFS="|"} /Dollar/ {print NR,"-",$0}' currencies.csv
-apache logs processing:
+```
+
+### apache logs processing:
+```
 cat apache_logs| awk '{print $9}'|sort|uniq -c #get statuscode and count
+```
