@@ -2,7 +2,7 @@
 
 ### find all files and use envsubst
 ```
-find "directory" -name "###.tmpl" --exec bash -c 'nvsubst < $1 > ${1%.tmpl}' _ {} \;
+find "directory" -name "###.tmpl" --exec bash -c 'envsubst < $1 > ${1%.tmpl}' _ {} \;
 ```
 
 ### use sed to get file name
@@ -28,6 +28,7 @@ join --nocheck-order <file1> <file2>
 - cut -f 1 -d \, country.csv
 - cut -s -f 1,2 -d\, country.csv
 - cat country.csv | rev | cut -f 1 -d \, | rev # get last column
+- echo "root:x:0:0:root:/root:/bin/bash" | cut -d ":" -f6
 
 ### xargs
  echo pof tut com | xargs -n 1 echo
@@ -76,4 +77,17 @@ awk 'BEGIN{IGNORECASE=1;FS=",";OFS="|"} /Dollar/ {print NR,"-",$0}' currencies.c
 ### apache logs processing:
 ```
 cat apache_logs| awk '{print $9}'|sort|uniq -c #get statuscode and count
+```
+
+### Using IFS
+```
+filename="/var/log/xyz.log"
+ 
+while IFS= read -r line
+do
+    # $line variable contains current line read from the file
+    # display $line text on the screen or do something with it.
+ 
+    echo "$line"
+done < $filename
 ```
