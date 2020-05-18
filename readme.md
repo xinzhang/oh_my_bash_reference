@@ -21,6 +21,9 @@ sort -c #check sort
 
 ### uniq
 
+### join
+join --nocheck-order <file1> <file2>
+
 ### cut
 - cut -f 1 -d \, country.csv
 - cut -s -f 1,2 -d\, country.csv
