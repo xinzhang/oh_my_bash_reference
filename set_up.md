@@ -9,4 +9,8 @@ brew install iterm
 
 ### install plugins of history_auto_complete & syntax_highlighter
 
+### install FZF
+  * add fd
+  * add fh 
+
 ### update theme

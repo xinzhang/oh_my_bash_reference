@@ -1,0 +1,2 @@
+#!/bin/bash
+helm list | fzf | cut -f 1 | xargs helm delete --purge
